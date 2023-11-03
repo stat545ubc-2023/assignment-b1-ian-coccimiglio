@@ -1,19 +1,16 @@
----
-title: "Assignment-B1"
-author: "Ian Coccimiglio"
-date: "2023-11-03"
-output: github_document 
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(testthat)
-```
+Assignment-B1
+================
+Ian Coccimiglio
+2023-11-03
 
 ## Creating a non-zero counter function
-The function created here will take in a numeric vector, and report the number of non-zero entries. Zeros here are loosely defined, and include anything that is 'falsy' - such as 0, "0", and FALSE. It does not work on entries that equal NA.
 
-```{r}
+The function created here will take in a numeric vector, and report the
+number of non-zero entries. Zeros here are loosely defined, and include
+anything that is ‘falsy’ - such as 0, “0”, and FALSE. It does not work
+on entries that equal NA.
+
+``` r
 #' Non-zero element counter
 #' This function returns the number of non-zero elements (including values that can be coerced to equal 0, such as FALSE and "0") in a vector.
 #' It is also capable of handling non-vector inputs, such as lists and dataframes. 
@@ -34,44 +31,66 @@ countNonZero <- function(vec) {
   numNonZero <- sum(nonZeroElements)
   return(numNonZero)
 }
-
 ```
 
 ## Examples
-This function is very flexible and works on a variety of inputs. In its simplest usage, this function takes in an ordinary numeric vector, and returns the number of non-zero elements. 
 
-```{r}
+This function is very flexible and works on a variety of inputs. In its
+simplest usage, this function takes in an ordinary numeric vector, and
+returns the number of non-zero elements.
+
+``` r
 ordinary_vector <- c(0, 0, 5, 2, 3, 0, 1)
 countNonZero(ordinary_vector)
 ```
 
-However, the function handles non-typical inputs as well, such as string vectors and boolean vectors:
+    ## [1] 4
 
-```{r}
+However, the function handles non-typical inputs as well, such as string
+vectors and boolean vectors:
+
+``` r
 string_vec <- countNonZero(c("0", "0", "1", "2"))
 bool_vec <- countNonZero(c(FALSE, TRUE, TRUE, TRUE, FALSE))
 print(paste("String Vector =",string_vec))
+```
+
+    ## [1] "String Vector = 2"
+
+``` r
 print(paste("Boolean Vector =",bool_vec))
 ```
 
-In typical usage, you might have a problem like "counting the number of students who have first aid training", where there is a binary column in a dataframe. We can easily use countNonZero to assess the number of students who have this training.
+    ## [1] "Boolean Vector = 3"
 
-```{r}
+In typical usage, you might have a problem like “counting the number of
+students who have first aid training”, where there is a binary column in
+a dataframe. We can easily use countNonZero to assess the number of
+students who have this training.
+
+``` r
 df <- data.frame('Name'=c("John", "Sarah", "Jeff", "Karen", "James"), "First_Aid_Training"=c(0,1,1,0,1))
 countNonZero(df$First_Aid_Training)
 ```
 
-In more niche use cases, you can count the total number of zeros present within a dataframe across all rows and columns. This prints a note so the user knows what's happening.
+    ## [1] 3
 
-```{r}
+In more niche use cases, you can count the total number of zeros present
+within a dataframe across all rows and columns. This prints a note so
+the user knows what’s happening.
+
+``` r
 df <- data.frame('Name'=c("John", "Sarah", "Jeff", "Karen", "0"), "First_Aid_Training"=c(0,1,1,0,1))
 countNonZero(df)
 ```
 
+    ## [1] "Note: Counting non-zero entries across all rows and columns"
+
+    ## [1] 7
+
 ## Tests
 
-
-```{r}
+``` r
 df <- data.frame('Name'=c("John", "Sarah", "Jeff", "Karen", "Jeff"), "First_Aid_Training"=c(0,1,1,0,1))
 
 test_that("numeric vectors work", {
@@ -79,19 +98,33 @@ test_that("numeric vectors work", {
   expect_equal(countNonZero(c(1, 1, 1)), 3)
   expect_equal(countNonZero(c(0, 2, 2)), 2)
 })
+```
 
+    ## Test passed 😀
+
+``` r
 test_that("string vectors work", {
   expect_equal(countNonZero(c("0", "0", "0")), 0)
   expect_equal(countNonZero(c("0", "1", "1")), 2)
 })
+```
 
+    ## Test passed 🌈
+
+``` r
 test_that("NAs create errors", {
   expect_error(countNonZero(c(NA, NA)))
   expect_error(countNonZero(c(1, 0, NA)))
 })
+```
 
+    ## Test passed 🥇
+
+``` r
 test_that("Dataframes are counted across all columns", {
   expect_equal(countNonZero(df), 8)
 })
-
 ```
+
+    ## [1] "Note: Counting non-zero entries across all rows and columns"
+    ## Test passed 😀
