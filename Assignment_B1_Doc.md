@@ -12,13 +12,16 @@ on entries that equal NA.
 
 ``` r
 #' Non-zero element counter
-#' This function returns the number of non-zero elements (including values that can be coerced to equal 0, such as FALSE and "0") in a vector.
+#' This function returns the number of non-zero elements in a vector 
+#' (including values that can be coerced to equal 0, such as FALSE and "0").
 #' It is also capable of handling non-vector inputs, such as lists and dataframes. 
 #' Values of NA will throw an error as they cannot be assigned a value of true/false.
 #' 
-#' @param vec A vector of inputs. The name suggests that this function is designed to operate on generic vectors, and not explicitly designed for higher level structures.
+#' @param vec A vector of inputs. 
+#' The name suggests that this function is designed to operate on generic vectors, 
+#' and not explicitly designed for higher level structures.
 #'
-#' @return numNonZero A count of nonZero values
+#' @return numNonZero A count of non zero values
 #' @export
 #'
 #' @examples countNonZero(seq(0,5))
@@ -100,7 +103,7 @@ test_that("numeric vectors work", {
 })
 ```
 
-    ## Test passed 😀
+    ## Test passed 🌈
 
 ``` r
 test_that("string vectors work", {
@@ -109,7 +112,7 @@ test_that("string vectors work", {
 })
 ```
 
-    ## Test passed 🌈
+    ## Test passed 🥳
 
 ``` r
 test_that("NAs create errors", {
@@ -118,7 +121,7 @@ test_that("NAs create errors", {
 })
 ```
 
-    ## Test passed 🥇
+    ## Test passed 🥳
 
 ``` r
 test_that("Dataframes are counted across all columns", {
