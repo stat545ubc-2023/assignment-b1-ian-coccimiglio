@@ -7,11 +7,14 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
 library(testthat)
 ```
 
 ## Creating a non-zero counter function
-The function created here will take in a numeric vector, and report the number of non-zero entries. Zeros here are loosely defined, and include anything that is 'falsy' - such as 0, "0", and FALSE. It does not work on entries that equal NA. 
+The function countNonZero has a single input of a generic vector, and returns the number of non-zero entries. Zeros here are loosely defined, and include anything that is 'falsy' - such as 0, "0", and FALSE. The function stops if any entries are equal to NA. It runs using only base R, aside from function testing.
 
 ```{r}
 #' Non-zero element counter
@@ -72,7 +75,6 @@ countNonZero(df)
 ```
 
 ## Tests
-
 
 ```{r}
 df <- data.frame('Name'=c("John", "Sarah", "Jeff", "Karen", "Jeff"), "First_Aid_Training"=c(0,1,1,0,1))

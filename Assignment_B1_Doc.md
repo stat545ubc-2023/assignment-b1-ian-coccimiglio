@@ -3,12 +3,16 @@ Assignment-B1
 Ian Coccimiglio
 2023-11-03
 
+``` r
+library(testthat)
+```
+
 ## Creating a non-zero counter function
 
-The function created here will take in a numeric vector, and report the
-number of non-zero entries. Zeros here are loosely defined, and include
-anything that is ‘falsy’ - such as 0, “0”, and FALSE. It does not work
-on entries that equal NA.
+The function countNonZero has a single input of a generic vector, and
+returns the number of non-zero entries. Zeros here are loosely defined,
+and include anything that is ‘falsy’ - such as 0, “0”, and FALSE. The
+function stops if any entries are equal to NA.
 
 ``` r
 #' Non-zero element counter
@@ -103,7 +107,7 @@ test_that("numeric vectors work", {
 })
 ```
 
-    ## Test passed 🎉
+    ## Test passed 🎊
 
 ``` r
 test_that("string vectors work", {
@@ -112,7 +116,7 @@ test_that("string vectors work", {
 })
 ```
 
-    ## Test passed 🥳
+    ## Test passed 🌈
 
 ``` r
 test_that("NAs create errors", {
@@ -121,7 +125,7 @@ test_that("NAs create errors", {
 })
 ```
 
-    ## Test passed 🥇
+    ## Test passed 😀
 
 ``` r
 test_that("Dataframes are counted across all columns", {
@@ -130,4 +134,4 @@ test_that("Dataframes are counted across all columns", {
 ```
 
     ## [1] "Note: Counting non-zero entries across all rows and columns"
-    ## Test passed 😀
+    ## Test passed 🥇
