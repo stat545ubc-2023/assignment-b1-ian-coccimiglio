@@ -21,7 +21,7 @@ on entries that equal NA.
 #' The name suggests that this function is designed to operate on generic vectors, 
 #' and not explicitly designed for higher level structures.
 #'
-#' @return numNonZero A count of non zero values
+#' @return numNonZero An integer count of non zero values
 #' @export
 #'
 #' @examples countNonZero(seq(0,5))
@@ -103,7 +103,7 @@ test_that("numeric vectors work", {
 })
 ```
 
-    ## Test passed 🌈
+    ## Test passed 🎉
 
 ``` r
 test_that("string vectors work", {
@@ -121,7 +121,7 @@ test_that("NAs create errors", {
 })
 ```
 
-    ## Test passed 🥳
+    ## Test passed 🥇
 
 ``` r
 test_that("Dataframes are counted across all columns", {
