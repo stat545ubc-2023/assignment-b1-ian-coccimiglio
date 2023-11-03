@@ -10,3 +10,4 @@ Assignment B1 contains an RMarkdown file which has the following parts
 3. Function tests created with the test_that() function
 
 The main document is in Assignment_B1_Doc.md
+The RMarkdown document is in Assignment_B1_Doc.Rmd
